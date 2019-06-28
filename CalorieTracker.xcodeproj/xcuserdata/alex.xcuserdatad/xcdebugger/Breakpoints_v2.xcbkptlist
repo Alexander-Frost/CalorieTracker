@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CalorieTracker/Core Data/Calories+Convenience.swift"
-            timestampString = "583436862.269415"
+            timestampString = "583438002.1020451"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "21"
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CalorieTracker/View Controllers/CalorieTrackerViewController.swift"
-            timestampString = "583436931.318966"
+            timestampString = "583438002.102543"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
             landmarkName = "updateViews()"
             landmarkType = "7">
          </BreakpointContent>

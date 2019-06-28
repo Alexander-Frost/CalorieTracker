@@ -18,23 +18,6 @@ class CalorieTrackerViewController: UIViewController, UITableViewDelegate, UITab
     
     let calorieController = CalorieTrackerController()
 
-//    lazy var fetchedResultsController: NSFetchedResultsController<CalorieTracker> = {
-//        let fetchRequest: NSFetchRequest<CalorieTracker> = CalorieTracker.fetchRequest()
-//        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: true)]
-//
-//        let moc = CoreDataStack.shared.mainContext
-//
-//        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
-//        fetchedResultsController.delegate = self
-//
-//        do {
-//            try fetchedResultsController.performFetch()
-//        } catch {
-//            print("Error performing fetchedResultsController: \(error)")
-//        }
-//        return fetchedResultsController
-//    }()
-    
     // MARK: - Outlets
     
     @IBOutlet var chartView: Chart!
