@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import SwiftChart
 
-class CalorieTrackerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
+class CalorieTrackerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource { //NSFetchedResultsControllerDelegate
 
     // MARK: - Properties
     var addedCalories: Int16 = 0
@@ -18,22 +18,22 @@ class CalorieTrackerViewController: UIViewController, UITableViewDelegate, UITab
     
     let calorieController = CalorieTrackerController()
 
-    lazy var fetchedResultsController: NSFetchedResultsController<CalorieTracker> = {
-        let fetchRequest: NSFetchRequest<CalorieTracker> = CalorieTracker.fetchRequest()
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: true)]
-
-        let moc = CoreDataStack.shared.mainContext
-
-        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
-        fetchedResultsController.delegate = self
-
-        do {
-            try fetchedResultsController.performFetch()
-        } catch {
-            print("Error performing fetchedResultsController: \(error)")
-        }
-        return fetchedResultsController
-    }()
+//    lazy var fetchedResultsController: NSFetchedResultsController<CalorieTracker> = {
+//        let fetchRequest: NSFetchRequest<CalorieTracker> = CalorieTracker.fetchRequest()
+//        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: true)]
+//
+//        let moc = CoreDataStack.shared.mainContext
+//
+//        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
+//        fetchedResultsController.delegate = self
+//
+//        do {
+//            try fetchedResultsController.performFetch()
+//        } catch {
+//            print("Error performing fetchedResultsController: \(error)")
+//        }
+//        return fetchedResultsController
+//    }()
     
     // MARK: - Outlets
     
@@ -57,6 +57,9 @@ class CalorieTrackerViewController: UIViewController, UITableViewDelegate, UITab
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (cancel) in
+            // dismiss
         }))
         
         present(alert, animated: true)
@@ -82,14 +85,12 @@ class CalorieTrackerViewController: UIViewController, UITableViewDelegate, UITab
     
     func updateViews() {
         let series = ChartSeries(chartData)
+        if addedCalories > 0 { chartData.append(Double(addedCalories)) }
         
         for calories in calorieController.calories {
-            //fetchedResultsController.fetchedObjects as! [CalorieTracker]
             chartData.append(Double(calories.calories))
         }
-        if addedCalories > 0 {
-            chartData.append(Double(addedCalories))
-        }
+        
         chartView.add(series)
         
         tableView.reloadData()
